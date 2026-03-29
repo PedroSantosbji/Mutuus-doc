@@ -969,9 +969,135 @@ function PageEscopo() {
   );
 }
 
+// ── Login ──
+function LoginPage({ onLogin }) {
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState(false);
+  const [show, setShow] = useState(false);
+
+  function handleSubmit() {
+    if (senha === "mutuus_e_guidance") {
+      onLogin();
+    } else {
+      setErro(true);
+      setSenha("");
+      setTimeout(() => setErro(false), 2500);
+    }
+  }
+
+  return (
+    <div style={{
+      minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
+      background: BG, fontFamily: "'Inter', sans-serif", position: "relative", overflow: "hidden",
+    }}>
+      <style>{G}</style>
+
+      {/* Fundo decorativo */}
+      <div style={{ position: "absolute", top: -120, right: -120, width: 500, height: 500, borderRadius: "50%", background: BRL, opacity: 0.6, zIndex: 0 }} />
+      <div style={{ position: "absolute", bottom: -80, left: -80, width: 320, height: 320, borderRadius: "50%", background: BR + "12", zIndex: 0 }} />
+      <div style={{ position: "absolute", top: "40%", left: "10%", width: 8, height: 8, borderRadius: "50%", background: ACC, opacity: 0.4 }} />
+      <div style={{ position: "absolute", top: "20%", right: "15%", width: 5, height: 5, borderRadius: "50%", background: BR, opacity: 0.3 }} />
+
+      <div className="fis" style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 420, padding: "0 24px" }}>
+
+        {/* Card */}
+        <div style={{
+          background: WH, borderRadius: 16,
+          border: "1px solid " + BD,
+          boxShadow: "0 4px 40px rgba(22,104,140,0.08)",
+          padding: "40px 40px 36px",
+        }}>
+          {/* Logo */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 32 }}>
+            <svg width={56} height={56} viewBox="0 0 40 40" fill="none" style={{ marginBottom: 14 }}>
+              <rect width="40" height="40" rx="10" fill={BRL} />
+              <rect x="6" y="8"  width="28" height="3" rx="1.5" fill={BR} opacity="0.9"/>
+              <rect x="6" y="14" width="22" height="3" rx="1.5" fill={BR} opacity="0.7"/>
+              <rect x="6" y="20" width="17" height="3" rx="1.5" fill={BR} opacity="0.55"/>
+              <rect x="6" y="26" width="24" height="3" rx="1.5" fill={BR} opacity="0.7"/>
+              <rect x="6" y="32" width="28" height="3" rx="1.5" fill={BR} opacity="0.9"/>
+              <rect x="26" y="16" width="8" height="14" rx="2" fill={BR}/>
+              <circle cx="30" cy="14" r="5" fill={BR}/>
+              <text x="30" y="18" textAnchor="middle" fill="white" fontSize="7" fontWeight="700" fontFamily="Inter,sans-serif">M</text>
+            </svg>
+            <div style={{ fontSize: 22, fontWeight: 700, color: BR, letterSpacing: "-0.4px", marginBottom: 4 }}>Mutuus</div>
+            <div style={{ fontSize: 12, color: TXL, letterSpacing: "0.8px", textTransform: "uppercase", fontWeight: 500 }}>Gestão Tributária · PRD</div>
+          </div>
+
+          {/* Título */}
+          <div style={{ textAlign: "center", marginBottom: 28 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: TX, marginBottom: 6 }}>Acesso restrito</div>
+            <div style={{ fontSize: 13, color: TXL, lineHeight: 1.5 }}>Insira a senha para acessar a documentação do produto.</div>
+          </div>
+
+          {/* Campo senha */}
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: TXM, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>Senha</label>
+            <div style={{ position: "relative" }}>
+              <input
+                type={show ? "text" : "password"}
+                value={senha}
+                onChange={e => { setSenha(e.target.value); setErro(false); }}
+                onKeyDown={e => e.key === "Enter" && handleSubmit()}
+                placeholder="••••••••••••••••"
+                style={{
+                  width: "100%", padding: "11px 44px 11px 14px",
+                  border: "1.5px solid " + (erro ? DG : BD),
+                  borderRadius: 8, fontSize: 14, color: TX,
+                  background: erro ? "#fff5f5" : WH, outline: "none",
+                  boxSizing: "border-box",
+                  transition: "border-color 0.2s",
+                }}
+              />
+              <button
+                onClick={() => setShow(!show)}
+                style={{
+                  position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
+                  background: "none", border: "none", cursor: "pointer", color: TXL, padding: 2,
+                  fontSize: 13,
+                }}
+              >{show ? "🙈" : "👁"}</button>
+            </div>
+            {erro && (
+              <div style={{ marginTop: 6, fontSize: 12, color: DG, fontWeight: 500 }}>
+                Senha incorreta. Tente novamente.
+              </div>
+            )}
+          </div>
+
+          {/* Botão */}
+          <button
+            onClick={handleSubmit}
+            style={{
+              width: "100%", padding: "12px",
+              background: BR, color: "#fff",
+              border: "none", borderRadius: 8,
+              fontSize: 14, fontWeight: 600, cursor: "pointer",
+              letterSpacing: "0.2px",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={e => e.target.style.background = BRD}
+            onMouseLeave={e => e.target.style.background = BR}
+          >
+            Acessar documentação →
+          </button>
+        </div>
+
+        {/* Rodapé */}
+        <div style={{ textAlign: "center", marginTop: 20, fontSize: 12, color: TXL }}>
+          Mutuus × Guidance · Uso interno
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── App ──
 export default function App() {
+  const [auth, setAuth] = useState(false);
   const [page, setPage] = useState("overview");
+
+  if (!auth) return <LoginPage onLogin={() => setAuth(true)} />;
 
   const PAGES = {
     overview: <PageOverview />,
