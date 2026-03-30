@@ -700,7 +700,6 @@ function PageRoadmap() {
     { label: "Prototipação e Handoff",           track: "DESIGN", start: 1,  dur: 4  },
     { label: "Suporte e ajustes",                track: "DESIGN", start: 5,  dur: 2  },
     // BACKEND
-    { label: "Infra básica de API",              track: "BE",     start: 1,  dur: 2  },
     { label: "Autenticação",                     track: "BE",     start: 1,  dur: 3  },
     { label: "CRUD de fornecedores",             track: "BE",     start: 2,  dur: 2  },
     { label: "CRUD de produtos",                 track: "BE",     start: 3,  dur: 3  },
@@ -851,7 +850,7 @@ function PageRoadmap() {
         {[
           {
             mes: "Mês 1", color: BR,
-            be: ["Infra básica de API", "Autenticação", "CRUD de fornecedores"],
+            be: ["Autenticação", "CRUD de fornecedores"],
             fe: ["— (Designer part-time até sem. 4)", "Componentização e layouts (sem. 3+)", "Autenticação e permissões (sem. 3+)"],
             design: ["Prototipação e Handoff completo"],
             qa: [],
