@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const BR = "#16688C", BRD = "#0f4f6a", BRL = "#e8f4f9";
 const ACC = "#00c4a0";
@@ -1095,6 +1095,14 @@ function LoginPage({ onLogin }) {
 export default function App() {
   const [auth, setAuth] = useState(false);
   const [page, setPage] = useState("overview");
+
+  useEffect(() => {
+    document.title = "SaaS Mutuus | Cálculo de Tributos sobre Produtos | Guidance";
+    const link = document.querySelector("link[rel='icon']") || document.createElement("link");
+    link.rel = "icon";
+    link.href = "https://www.guidance.dev/favicon.ico";
+    document.head.appendChild(link);
+  }, []);
 
   if (!auth) return <LoginPage onLogin={() => setAuth(true)} />;
 
